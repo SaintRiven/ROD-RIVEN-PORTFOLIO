@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rod Riven</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+    <style>
+      /* Certificate Slideshow Styles */
+      .certificates-section {
+        margin: 2rem 0;
+      }
+      
+      .certificates-slideshow {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 20px;
+        padding: 1rem 0;
+      }
+      
+      .certificates-slideshow::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .certificate-slide {
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+        width: 80%;
+        max-width: 600px;
+        text-align: center;
+      }
+      
+      .certificate-slide img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+      
+      .certificate-title {
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+        color: #333;
+      }
+      
+           .projects-section {
+        margin: 2rem 0;
+      }
+      
+      .projects-slideshow {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 30px;
+        padding: 1rem 0;
+      }
+      
+      .projects-slideshow::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .project-slide {
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+        width: 80%;
+        max-width: 340px;
+        text-align: center;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 1rem;
+      }
+      
+      .project-slide img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+      
+      .project-title {
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 1rem;
+      }
+      
+      .project-btn {
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+      #ojt {
+        padding-bottom: 2rem;
+      }
+     
+      .details-container.color-container {
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+        width: 300px;
+      }
+      
+      .slideshow-nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+      
+      .slideshow-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #333;
+      }
+      
+      .slideshow-btn:hover {
+        color: #000;
+      }
+
+      /* OJT Slideshow Styles with Right-side Images */
+      .ojt-section {
+        padding-right: 2rem ; 
+        padding-left: 2rem; 
+        background-color: white;
+      }
+      
+      .ojt-slideshow {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 30px;
+        padding: 20px 0;
+        margin: 0 auto;
+        max-width: 1700px;
+      }
+      
+      .ojt-slideshow::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .ojt-slide {
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+        width: 98%;
+        max-width: 1300px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .ojt-content {
+        padding: 25px;
+        display: flex;
+        padding-left: 3rem;
+        flex-direction: column;
+      }
+      
+      .ojt-image {
+        background-size: cover;
+        background-position: center;
+      }
+      
+      .ojt-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      
+      .ojt-company-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        margin-right: 20px;
+        border-radius: 8px;
+      }
+      
+      .ojt-title {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        color: #333;
+      }
+      
+      .ojt-company {
+        font-size: 1.1rem;
+        color: #666;
+      }
+      
+      .ojt-duration {
+        color: #888;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+      }
+      
+      .ojt-description {
+        line-height: 1.6;
+        color: #444;
+        flex-grow: 1;
+        text-align: justify;
+      }
+      
+      .ojt-skills {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .skill-tag {
+        background-color: #e9f5ff;
+        color: #0066cc;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+      }
+      
+      .ojt-slideshow-nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+      
+      .ojt-slideshow-btn {
+        background: #333;
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+      }
+      
+      .ojt-slideshow-btn:hover {
+        background: #555;
+      }
+      
+      @media (max-width: 768px) {
+        .ojt-slide {
+          grid-template-columns: 1fr;
+          width: 90%;
+        }
+        
+        .ojt-image {
+          height: 200px;
+          order: -1;
+        }
+        
+        .ojt-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        
+        .ojt-company-logo {
+          margin-right: 0;
+          margin-bottom: 15px;
+        }
+      }
+      
+      /* About section spacing */
+      #about {
+        padding-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">Rod Riven</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Skills</a></li>
+          <li><a href="#ojt">OJT Experience</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">Rod Riven</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#ojt" onclick="toggleMenu()">OJT Experience</a></li>
+          <li><a href="#certificates" onclick="toggleMenu()">Certificates</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="./assets/Rod.png" alt="Rod Riven profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Rod Riven</h1>
+        <p class="section__text__p2">Aspiring Frontend Developer</p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('./assets/Rod Riven Resume.pdf')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://www.linkedin.com/in/rod-riven-ladroma-933238219/'"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='https://github.com/SaintRiven'"
+          />
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="./assets/Rod Riven.JPG"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Aspiring</h3>
+              <p>UI/UX <br />Frontend Development</p>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Education</h3>
+              <p>Bachelor of Science in <br> Information Technology</p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p> An IT student passionate about UI/UX design, I specialize in creating intuitive, user-centered designs
+that deliver seamless and impactful experiences. With a strong interest in hardware and its technical
+intricacies, I bring a unique blend of creativity and technical expertise. A natural leader and effective
+communicator, I excel at fostering collaboration, guiding teams toward shared goals, and driving
+projects to success in fast-paced environments. My competitive drive, adaptability, and ability to inspire
+others make me a valuable asset to any team
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+       <section id="experience">
+      <p class="section__text__p1">My</p>
+      <h1 class="title">Skills and Expertise</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title1">Frontend Development</h2>
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>HTML</h3>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>CSS</h3>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>JavaScript</h3>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>Figma</h3>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>WordPress</h3>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>UX/UI</h3>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Other Skills</h2>
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>Social Media Manager</h3>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>Networking</h3>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>Computer Hardware</h3>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>Data & Analytics</h3>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div>
+                  <h3>Documentation Writing</h3>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OJT Experience Section with Right-side Images -->
+    <section id="ojt" class="ojt-section">
+      <p class="section__text__p1">My Practical</p>
+      <h1 class="title">OJT Experience</h1>
+      <div class="ojt-slideshow" id="ojt-slideshow">
+        <!-- OJT Experience 1 -->
+        <div class="ojt-slide">
+          <div class="ojt-content">
+            <div class="ojt-header">
+              <img src="./assets/SPLACE.png" alt="Company Logo" class="ojt-company-logo">
+              <div>
+                <h2 class="ojt-title">Networking Administrator</h2>
+                <p class="ojt-company">Splace BPO</p>
+              </div>
+            </div>
+            <p class="ojt-duration">March 2025 - June 2025 | Trainee</p>
+            <div class="ojt-description">
+              <p>During my internship at Tech Solutions, I worked on developing responsive user interfaces for client projects:</p>
+              <ul>
+                <li>Configures, maintains, and troubleshoots LAN, WAN, and VPN networks to ensure stable and secure connectivity.</li>
+                <li>Installs, supports, and updates network hardware such as routers, switches, firewalls, and wireless access points.</li>
+                <li>Monitors network performance and usage to identify bottlenecks, outages, or potential security threats. </li>
+                <li>Manages user access, permissions, and security policies in compliance with organizational standards.</li>
+              </ul>
+            </div>
+            <div class="ojt-skills">
+              <span class="skill-tag">Cisco</span>
+              <span class="skill-tag">Firewalls</span>
+              <span class="skill-tag">Network Configuration</span>
+              <span class="skill-tag">Network Monitoring</span>
+            </div>
+          </div>
+          <div class="ojt-image" style="background-image: url('./assets/Rod1.jpg')"></div>
+        </div>
+        
+        <!-- OJT Experience 2 -->
+        <div class="ojt-slide">
+          <div class="ojt-content">
+            <div class="ojt-header">
+              <img src="./assets/SPLACE.png" alt="Company Logo" class="ojt-company-logo">
+              <div>
+                <h2 class="ojt-title">Web Development</h2>
+                <p class="ojt-company">Splace BPO</p>
+              </div>
+            </div>
+            <p class="ojt-duration">March 2025 - June 2025 | Trainee</p>
+            <div class="ojt-description">
+              <p>My training at Digital Creative Agency provided hands-on experience with real client projects:</p>
+              <ul>
+                <li>Designs, develops, and maintains responsive websites and web applications using HTML, CSS, JavaScript, and modern frameworks.</li>
+                <li>Collaborates with UI/UX designers to translate visual concepts into functional, interactive user interfaces.</li>
+                <li>Optimizes website performance for speed, scalability, and cross-browser compatibility.</li>
+                <li>Tests and deploys web applications in staging and production environments.</li>
+              </ul>
+            </div>
+            <div class="ojt-skills">
+              <span class="skill-tag">HTML</span>
+              <span class="skill-tag">CSS</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">GitHub</span>
+
+            </div>
+          </div>
+          <div class="ojt-image" style="background-image: url('./assets/Rod2.jpg')"></div>
+        </div>
+        
+        <!-- OJT Experience 3 -->
+        <div class="ojt-slide">
+          <div class="ojt-content">
+            <div class="ojt-header">
+              <img src="./assets/SPLACE.png" alt="Company Logo" class="ojt-company-logo">
+              <div>
+                <h2 class="ojt-title">Data Verification</h2>
+                <p class="ojt-company">Splace BPO</p>
+              </div>
+            </div>
+            <p class="ojt-duration">March 2025 - June 2025 | Trainee</p>
+            <div class="ojt-description">
+              <p>At Innovate Design Studio, I supported the design team in creating user-centered interfaces:</p>
+              <ul>
+                <li>Reviews and validates incoming data for accuracy, consistency, and completeness.</li>
+                <li>Performs routine audits and quality checks to maintain high standards of data accuracy.</li>
+                <li>Updates and maintains databases, ensuring verified records are properly stored and accessible.</li>
+                <li>Maintains confidentiality and handles sensitive information in accordance with data privacy regulations.</li>
+              </ul>
+            </div>
+            <div class="ojt-skills">
+              <span class="skill-tag">Excel</span>
+              <span class="skill-tag">Sheet</span>
+              <span class="skill-tag">That'sThem</span>
+              <span class="skill-tag">Data Entry</span>
+              <span class="skill-tag">Data Analysis</span>  
+            </div>
+          </div>
+          <div class="ojt-image" style="background-image: url('./assets/lead.jpg')"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates">
+      <p class="section__text__p1">My</p>
+      <h1 class="title">Certificates</h1>
+      <div class="certificates-section">
+        <div class="certificates-slideshow" id="certificates-slideshow">
+          <!-- Certificate 1 -->
+          <div class="certificate-slide">
+            <img src="./Cert/Cert1.png" alt="Frontend Development Certificate">
+            <p class="certificate-title">UI/UX Certification</p>
+          </div>
+          
+          <!-- Certificate 2 -->
+          <div class="certificate-slide">
+            <img src="./Cert/Cert2.png" alt="JavaScript Certificate">
+            <p class="certificate-title">WordPress Certification</p>
+          </div>
+          
+          <!-- Certificate 3 -->
+          <div class="certificate-slide">
+            <img src="./Cert/4.png" alt="React Certificate">
+            <p class="certificate-title">MCITS 2023 Certification</p>
+          </div>
+          
+          <!-- Certificate 4 -->
+          <div class="certificate-slide">
+            <img src="./Cert/5.png" alt="CSS Certificate">
+            <p class="certificate-title">MCITS 2024 Certification</p>
+          </div>
+
+          <!-- Certificate 5 -->
+          <div class="certificate-slide">
+            <img src="./Cert/3.png" alt="CSS Certificate">
+            <p class="certificate-title">HCDC SERVICE AWARD</p>
+          </div>
+  
+          <!-- Certificate 6 -->
+          <div class="certificate-slide">
+            <img src="./Cert/6.png" alt="CSS Certificate">
+            <p class="certificate-title">ITS SERVICE AWARD</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="projects-section">
+        <div class="projects-slideshow" id="projects-slideshow">
+          <!-- Project 1 -->
+          <div class="project-slide">
+            <img src="./assets/ECO-CONNECT.png" alt="ECO-CONNECT">
+            <h2 class="project-title">ECO-CONNECT</h2>
+            <button
+              class="btn btn-color-2 project-btn"
+              onclick="location.href='https://github.com/SaintRiven/Eco-Connect'"
+            >
+              View on GitHub
+            </button>
+          </div>
+          
+          <!-- Project 2 -->
+          <div class="project-slide">
+            <img src="./assets/BlockBlitz.png" alt="BlockBlitz">
+            <h2 class="project-title">BlockBlitz</h2>
+            <button
+              class="btn btn-color-2 project-btn"
+              onclick="location.href='https://github.com/SaintRiven/BlockBlitz'"
+            >
+              View on GitHub
+            </button>
+          </div>
+          
+          <!-- Project 3 -->
+          <div class="project-slide">
+            <img src="./assets/Clinic.png" alt="HCDC Clinic">
+            <h2 class="project-title">HCDC Clinic</h2>
+            <button
+              class="btn btn-color-2 project-btn"
+              onclick="location.href='https://github.com/SaintRiven/HCDC-Clinic'"
+            >
+              View on GitHub
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:examplemail@gmail.com">ladroma.rodriven@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com">LinkedIn</a></p>
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+    <script>
+      // Certificate Slideshow Functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        // Certificates slideshow
+        const certSlideshow = document.getElementById('certificates-slideshow');
+        const certPrevBtn = document.querySelector('.cert-prev-btn');
+        const certNextBtn = document.querySelector('.cert-next-btn');
+        
+        if (certSlideshow && certPrevBtn && certNextBtn) {
+          certNextBtn.addEventListener('click', () => {
+            certSlideshow.scrollBy({ left: 320, behavior: 'smooth' });
+          });
+          
+          certPrevBtn.addEventListener('click', () => {
+            certSlideshow.scrollBy({ left: -320, behavior: 'smooth' });
+          });
+        }
+
+        // Projects slideshow functionality
+        const projSlideshow = document.querySelector('.projects-slideshow');
+        const projPrevBtn = document.querySelector('.prev-btn');
+        const projNextBtn = document.querySelector('.next-btn');
+        
+        if (projSlideshow && projPrevBtn && projNextBtn) {
+          projNextBtn.addEventListener('click', () => {
+            projSlideshow.scrollBy({ left: 320, behavior: 'smooth' });
+          });
+          
+          projPrevBtn.addEventListener('click', () => {
+            projSlideshow.scrollBy({ left: -320, behavior: 'smooth' });
+          });
+        }
+
+        // OJT Slideshow Functionality
+        const ojtSlideshow = document.getElementById('ojt-slideshow');
+        const ojtPrevBtn = document.querySelector('.ojt-prev-btn');
+        const ojtNextBtn = document.querySelector('.ojt-next-btn');
+        
+        if (ojtSlideshow && ojtPrevBtn && ojtNextBtn) {
+          ojtNextBtn.addEventListener('click', () => {
+            ojtSlideshow.scrollBy({ left: 650, behavior: 'smooth' });
+          });
+          
+          ojtPrevBtn.addEventListener('click', () => {
+            ojtSlideshow.scrollBy({ left: -650, behavior: 'smooth' });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
